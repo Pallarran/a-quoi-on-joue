@@ -1,7 +1,8 @@
 import { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, LocationTag, PlayerTag, EnergyTag, DurationTag } from '../types/Activity';
+import { Activity, LocationTag, PlayerTag, EnergyTag, DurationTag, SeasonTag } from '../types/Activity';
 import { useActivities } from '../hooks/useActivities';
+import { getSeasonEmoji, getSeasonLabel } from '../utils/seasons';
 
 const AdminPanel = () => {
   const { activities, addActivity, updateActivity, deleteActivity, uploadImage } = useActivities();
@@ -20,6 +21,7 @@ const AdminPanel = () => {
     players: [] as PlayerTag[],
     energy: [] as EnergyTag[],
     duration: [] as DurationTag[],
+    season: ['all-year'] as SeasonTag[], // Default to all-year
     houseLocation: '',
   });
 
@@ -78,6 +80,7 @@ const AdminPanel = () => {
         players: formData.players,
         energy: formData.energy,
         duration: formData.duration,
+        season: formData.season,
       },
       houseLocation: formData.houseLocation || undefined,
     };
@@ -105,6 +108,7 @@ const AdminPanel = () => {
       players: activity.tags.players,
       energy: activity.tags.energy,
       duration: activity.tags.duration,
+      season: activity.tags.season,
       houseLocation: activity.houseLocation || '',
     });
     setShowForm(true);
@@ -127,13 +131,14 @@ const AdminPanel = () => {
       players: [],
       energy: [],
       duration: [],
+      season: ['all-year'],
       houseLocation: '',
     });
     setEditingId(null);
     setShowForm(false);
   };
 
-  const toggleTag = <T,>(category: 'location' | 'players' | 'energy' | 'duration', value: T) => {
+  const toggleTag = <T,>(category: 'location' | 'players' | 'energy' | 'duration' | 'season', value: T) => {
     const currentValues = formData[category] as T[];
     const newValues = currentValues.includes(value)
       ? currentValues.filter(v => v !== value)
@@ -358,6 +363,57 @@ const AdminPanel = () => {
                 </div>
               </div>
 
+              <div className="mb-4">
+                <label className="block text-gray-700 font-medium mb-2">🌍 Saison (sélection multiple)</label>
+                <div className="flex flex-wrap gap-2">
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.season.includes('spring')}
+                      onChange={() => toggleTag('season', 'spring')}
+                      className="w-4 h-4"
+                    />
+                    <span>{getSeasonEmoji('spring')} {getSeasonLabel('spring')}</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.season.includes('summer')}
+                      onChange={() => toggleTag('season', 'summer')}
+                      className="w-4 h-4"
+                    />
+                    <span>{getSeasonEmoji('summer')} {getSeasonLabel('summer')}</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.season.includes('fall')}
+                      onChange={() => toggleTag('season', 'fall')}
+                      className="w-4 h-4"
+                    />
+                    <span>{getSeasonEmoji('fall')} {getSeasonLabel('fall')}</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.season.includes('winter')}
+                      onChange={() => toggleTag('season', 'winter')}
+                      className="w-4 h-4"
+                    />
+                    <span>{getSeasonEmoji('winter')} {getSeasonLabel('winter')}</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.season.includes('all-year')}
+                      onChange={() => toggleTag('season', 'all-year')}
+                      className="w-4 h-4"
+                    />
+                    <span>{getSeasonEmoji('all-year')} {getSeasonLabel('all-year')}</span>
+                  </label>
+                </div>
+              </div>
+
               <div className="mb-6">
                 <label className="block text-gray-700 font-medium mb-2">📍 Emplacement dans la maison (optionnel)</label>
                 <input
@@ -421,6 +477,11 @@ const AdminPanel = () => {
                     {activity.tags.duration.map(d => (
                       <span key={d} className="text-xs px-2 py-1 bg-teal-100 text-teal-700 rounded">
                         {d === '5-10' ? '5-10m' : d === '10-30' ? '10-30m' : '30m+'}
+                      </span>
+                    ))}
+                    {activity.tags.season.map(s => (
+                      <span key={s} className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded">
+                        {getSeasonEmoji(s)} {getSeasonLabel(s)}
                       </span>
                     ))}
                     {activity.houseLocation && (

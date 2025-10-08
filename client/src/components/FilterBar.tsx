@@ -1,4 +1,5 @@
-import { ActivityFilters, LocationTag, PlayerTag, EnergyTag, DurationTag } from '../types/Activity';
+import { ActivityFilters, LocationTag, PlayerTag, EnergyTag, DurationTag, SeasonTag } from '../types/Activity';
+import { getSeasonEmoji, getSeasonLabel, getCurrentSeason } from '../utils/seasons';
 
 interface FilterBarProps {
   filters: ActivityFilters;
@@ -36,6 +37,13 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
     onFiltersChange({ ...filters, duration: newDuration });
   };
 
+  const toggleSeason = (season: SeasonTag) => {
+    const newSeason = filters.season.includes(season)
+      ? filters.season.filter(s => s !== season)
+      : [...filters.season, season];
+    onFiltersChange({ ...filters, season: newSeason });
+  };
+
   const toggleFavoritesOnly = () => {
     onFiltersChange({ ...filters, showFavoritesOnly: !filters.showFavoritesOnly });
   };
@@ -46,6 +54,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
       players: [],
       energy: [],
       duration: [],
+      season: [getCurrentSeason()], // Reset to current season
       showFavoritesOnly: false,
     });
   };
@@ -55,6 +64,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
     filters.players.length > 0 ||
     filters.energy.length > 0 ||
     filters.duration.length > 0 ||
+    filters.season.length !== 1 || filters.season[0] !== getCurrentSeason() ||
     filters.showFavoritesOnly;
 
   const inactiveButtonClass = isDarkMode
@@ -70,7 +80,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
       <div className={`rounded-2xl shadow-sm border p-6 ${
         isDarkMode ? 'bg-[#0a2a3d] border-gray-700' : 'bg-white border-gray-100'
       }`}>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[1.2fr_1fr_0.9fr_1fr_0.8fr] gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[1.2fr_1.2fr_1fr_0.9fr_1fr_0.8fr] gap-3">
           {/* Location Filters */}
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -97,6 +107,31 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
                 }`}
               >
                 Extérieur
+              </button>
+            </div>
+          </div>
+
+          {/* Season Filters */}
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-base">{getSeasonEmoji(getCurrentSeason())}</span>
+              <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Saison</h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button onClick={() => toggleSeason('spring')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('spring') ? 'bg-pink-400 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('spring')} {getSeasonLabel('spring')}
+              </button>
+              <button onClick={() => toggleSeason('summer')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('summer') ? 'bg-yellow-400 text-gray-900 shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('summer')} {getSeasonLabel('summer')}
+              </button>
+              <button onClick={() => toggleSeason('fall')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('fall') ? 'bg-orange-500 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('fall')} {getSeasonLabel('fall')}
+              </button>
+              <button onClick={() => toggleSeason('winter')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('winter') ? 'bg-blue-400 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('winter')} {getSeasonLabel('winter')}
+              </button>
+              <button onClick={() => toggleSeason('all-year')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('all-year') ? 'bg-emerald-500 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('all-year')} Toute
               </button>
             </div>
           </div>

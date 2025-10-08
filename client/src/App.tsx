@@ -4,6 +4,7 @@ import { useActivities } from './hooks/useActivities';
 import { useFavorites } from './hooks/useFavorites';
 import { useTheme } from './hooks/useTheme';
 import { ActivityFilters } from './types/Activity';
+import { getCurrentSeason } from './utils/seasons';
 import FilterBar from './components/FilterBar';
 import ActivityList from './components/ActivityList';
 import SurpriseMeButton from './components/SurpriseMeButton';
@@ -19,6 +20,7 @@ function KidsApp() {
     players: [],
     energy: [],
     duration: [],
+    season: [getCurrentSeason()], // Default to current season
     showFavoritesOnly: false,
   });
 
@@ -44,6 +46,17 @@ function KidsApp() {
 
       if (filters.duration.length > 0 && !filters.duration.some(d => activity.tags.duration.includes(d))) {
         return false;
+      }
+
+      // Season filter: only applies to outdoor activities
+      // Indoor activities bypass season filter
+      if (activity.tags.location.includes('outdoor') && filters.season.length > 0) {
+        // Activity must either match the selected season(s) or be tagged as 'all-year'
+        const hasMatchingSeason = filters.season.some(s => activity.tags.season.includes(s));
+        const isAllYear = activity.tags.season.includes('all-year');
+        if (!hasMatchingSeason && !isAllYear) {
+          return false;
+        }
       }
 
       return true;

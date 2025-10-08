@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
 import { Activity } from '../types/Activity';
+import { getSeasonEmoji, getSeasonLabel } from '../utils/seasons';
 
 interface ActivityCardProps {
   activity: Activity;
@@ -44,6 +45,10 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
       outdoor: 'Extérieur',
     };
     return activity.tags.location.map(l => labels[l]).join(', ');
+  };
+
+  const getSeasonText = () => {
+    return activity.tags.season.map(s => `${getSeasonEmoji(s)} ${getSeasonLabel(s)}`).join(', ');
   };
 
   // Different emoji based on activity name
@@ -176,6 +181,10 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
                 <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
                   <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Durée</div>
                   <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getDurationText()}</div>
+                </div>
+                <div className={`p-4 rounded-xl col-span-2 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                  <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Saison</div>
+                  <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getSeasonText()}</div>
                 </div>
               </div>
 
