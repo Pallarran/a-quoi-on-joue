@@ -74,35 +74,35 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
           className="relative"
           onClick={() => setShowModal(true)}
         >
-          <div className={`w-full h-56 flex items-center justify-center ${
+          <div className={`w-full h-56 flex items-center justify-center rounded-2xl ${
             isDarkMode ? 'bg-gradient-to-br from-[#0d3449] to-[#0a2a3d]' : 'bg-gradient-to-br from-cyan-50 to-blue-50'
           }`}>
             <span className="text-7xl group-hover:scale-110 transition-transform">{getEmoji()}</span>
           </div>
 
-          {/* Name bubble at bottom */}
-          <div className={`absolute bottom-0 left-0 right-0 p-4 backdrop-blur-md ${
-            isDarkMode ? 'bg-gray-900/80' : 'bg-white/80'
+          {/* Name bubble at bottom-left (dynamic size) */}
+          <div className={`absolute bottom-3 left-3 px-3 py-2 rounded-full backdrop-blur-md shadow-lg max-w-[calc(100%-6rem)] ${
+            isDarkMode ? 'bg-gray-900/90' : 'bg-white/90'
           }`}>
-            <h3 className={`text-lg font-bold text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h3 className={`text-sm font-bold truncate ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               {activity.name}
             </h3>
           </div>
-        </div>
 
-        {/* Favorite button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleFavorite();
-          }}
-          className={`absolute top-4 right-4 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all ${
-            isDarkMode ? 'bg-gray-800' : 'bg-white'
-          }`}
-          aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
-        >
-          <span className="text-xl">{isFavorite ? '❤️' : '🤍'}</span>
-        </button>
+          {/* Favorite button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite();
+            }}
+            className={`absolute top-3 right-3 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all ${
+              isDarkMode ? 'bg-gray-800' : 'bg-white'
+            }`}
+            aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+          >
+            <span className="text-xl">{isFavorite ? '❤️' : '🤍'}</span>
+          </button>
+        </div>
       </div>
 
       {/* Modal */}
