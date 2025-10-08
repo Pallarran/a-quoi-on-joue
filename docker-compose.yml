@@ -7,7 +7,7 @@ services:
     ports:
       - "3010:3000"
     volumes:
-      - ./server/src/data:/app/data
+      - ./server/src/data:/app/src/data
       - ./server/uploads:/app/uploads
       - ./server/public/images:/app/public/images
     environment:
