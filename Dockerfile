@@ -10,9 +10,9 @@ RUN npm run build
 FROM node:18-alpine
 WORKDIR /app
 
-# Install server dependencies
+# Install server dependencies (including tsx for runtime)
 COPY server/package*.json ./
-RUN npm ci --production
+RUN npm ci
 
 # Copy server files
 COPY server/ ./
