@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { X } from 'lucide-react';
 import { Activity } from '../types/Activity';
 
 interface ActivityCardProps {
@@ -8,6 +10,8 @@ interface ActivityCardProps {
 }
 
 const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = false }: ActivityCardProps) => {
+  const [showModal, setShowModal] = useState(false);
+
   const getPlayersText = () => {
     const labels: { [key: string]: string } = {
       solo: 'Solo',
@@ -35,6 +39,15 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
     return labels[activity.tags.duration];
   };
 
+  const getLocationText = () => {
+    const labels: { [key: string]: string } = {
+      indoor: 'Intérieur',
+      outdoor: 'Extérieur',
+      both: 'Les deux',
+    };
+    return labels[activity.tags.location];
+  };
+
   // Different emoji based on activity name
   const getEmoji = () => {
     const name = activity.name.toLowerCase();
@@ -52,17 +65,37 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
   };
 
   return (
-    <div className={`rounded-2xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow ${
-      isDarkMode ? 'bg-[#0a2a3d] border-gray-700' : 'bg-white border-gray-100'
-    }`}>
-      <div className="relative">
-        <div className={`w-full h-56 flex items-center justify-center ${
-          isDarkMode ? 'bg-gradient-to-br from-[#0d3449] to-[#0a2a3d]' : 'bg-gradient-to-br from-cyan-50 to-blue-50'
-        }`}>
-          <span className="text-7xl">{getEmoji()}</span>
+    <>
+      {/* Simplified Card */}
+      <div className={`rounded-2xl shadow-sm border overflow-hidden hover:shadow-lg transition-all cursor-pointer group ${
+        isDarkMode ? 'bg-[#0a2a3d] border-gray-700' : 'bg-white border-gray-100'
+      }`}>
+        <div
+          className="relative"
+          onClick={() => setShowModal(true)}
+        >
+          <div className={`w-full h-56 flex items-center justify-center ${
+            isDarkMode ? 'bg-gradient-to-br from-[#0d3449] to-[#0a2a3d]' : 'bg-gradient-to-br from-cyan-50 to-blue-50'
+          }`}>
+            <span className="text-7xl group-hover:scale-110 transition-transform">{getEmoji()}</span>
+          </div>
+
+          {/* Name bubble at bottom */}
+          <div className={`absolute bottom-0 left-0 right-0 p-4 backdrop-blur-md ${
+            isDarkMode ? 'bg-gray-900/80' : 'bg-white/80'
+          }`}>
+            <h3 className={`text-lg font-bold text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              {activity.name}
+            </h3>
+          </div>
         </div>
+
+        {/* Favorite button */}
         <button
-          onClick={onToggleFavorite}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleFavorite();
+          }}
           className={`absolute top-4 right-4 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all ${
             isDarkMode ? 'bg-gray-800' : 'bg-white'
           }`}
@@ -72,37 +105,98 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
         </button>
       </div>
 
-      <div className="p-6">
-        <h3 className={`text-xl font-bold mb-3 leading-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{activity.name}</h3>
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setShowModal(false)}>
+          <div
+            className={`rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl ${
+              isDarkMode ? 'bg-[#0a2a3d]' : 'bg-white'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowModal(false)}
+              className={`absolute top-4 right-4 rounded-full p-2 shadow-md hover:shadow-lg transition-all ${
+                isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white/90 hover:bg-white'
+              }`}
+              aria-label="Fermer"
+            >
+              <X size={24} className={isDarkMode ? 'text-white' : 'text-gray-900'} />
+            </button>
 
-        {/* House Location */}
-        {activity.houseLocation && (
-          <div className={`flex items-center gap-1.5 mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            <span className="text-base">📍</span>
-            <span className="text-sm font-medium">{activity.houseLocation}</span>
+            {/* Image/Emoji */}
+            <div className="relative">
+              <div className={`w-full h-64 md:h-80 flex items-center justify-center ${
+                isDarkMode ? 'bg-gradient-to-br from-[#0d3449] to-[#0a2a3d]' : 'bg-gradient-to-br from-cyan-50 to-blue-50'
+              }`}>
+                <span className="text-9xl">{getEmoji()}</span>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className={`text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                  {activity.name}
+                </h2>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleFavorite();
+                  }}
+                  className={`rounded-full p-3 shadow-md hover:shadow-lg transition-all ${
+                    isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
+                  }`}
+                >
+                  <span className="text-2xl">{isFavorite ? '❤️' : '🤍'}</span>
+                </button>
+              </div>
+
+              {/* House Location */}
+              {activity.houseLocation && (
+                <div className={`flex items-center gap-2 mb-6 text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <span className="text-xl">📍</span>
+                  <span className="font-medium">{activity.houseLocation}</span>
+                </div>
+              )}
+
+              {/* Tags */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                  <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Où ?</div>
+                  <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getLocationText()}</div>
+                </div>
+                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                  <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Joueurs</div>
+                  <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getPlayersText()}</div>
+                </div>
+                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                  <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Énergie</div>
+                  <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getEnergyText()}</div>
+                </div>
+                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                  <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Durée</div>
+                  <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getDurationText()}</div>
+                </div>
+              </div>
+
+              {/* Close button */}
+              <button
+                onClick={() => setShowModal(false)}
+                className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
+                  isDarkMode
+                    ? 'bg-gray-800 text-white hover:bg-gray-700'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Fermer
+              </button>
+            </div>
           </div>
-        )}
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          <span className={`inline-block px-3 py-1.5 rounded-lg text-xs font-medium border ${
-            isDarkMode ? 'bg-gray-700 text-gray-200 border-gray-600' : 'bg-gray-50 text-gray-700 border-gray-200'
-          }`}>
-            {getPlayersText()}
-          </span>
-          <span className={`inline-block px-3 py-1.5 rounded-lg text-xs font-medium border ${
-            isDarkMode ? 'bg-gray-700 text-gray-200 border-gray-600' : 'bg-gray-50 text-gray-700 border-gray-200'
-          }`}>
-            {getEnergyText()}
-          </span>
-          <span className={`inline-block px-3 py-1.5 rounded-lg text-xs font-medium border ${
-            isDarkMode ? 'bg-gray-700 text-gray-200 border-gray-600' : 'bg-gray-50 text-gray-700 border-gray-200'
-          }`}>
-            {getDurationText()}
-          </span>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
