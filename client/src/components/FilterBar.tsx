@@ -8,24 +8,32 @@ interface FilterBarProps {
 }
 
 const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false }: FilterBarProps) => {
-  const toggleLocation = (location: LocationTag | 'all') => {
-    // If clicking the same filter, deselect it
-    onFiltersChange({ ...filters, location: filters.location === location ? 'all' : location });
+  const toggleLocation = (location: LocationTag) => {
+    const newLocation = filters.location.includes(location)
+      ? filters.location.filter(l => l !== location)
+      : [...filters.location, location];
+    onFiltersChange({ ...filters, location: newLocation });
   };
 
-  const togglePlayers = (players: PlayerTag | 'all') => {
-    // If clicking the same filter, deselect it
-    onFiltersChange({ ...filters, players: filters.players === players ? 'all' : players });
+  const togglePlayers = (players: PlayerTag) => {
+    const newPlayers = filters.players.includes(players)
+      ? filters.players.filter(p => p !== players)
+      : [...filters.players, players];
+    onFiltersChange({ ...filters, players: newPlayers });
   };
 
-  const toggleEnergy = (energy: EnergyTag | 'all') => {
-    // If clicking the same filter, deselect it
-    onFiltersChange({ ...filters, energy: filters.energy === energy ? 'all' : energy });
+  const toggleEnergy = (energy: EnergyTag) => {
+    const newEnergy = filters.energy.includes(energy)
+      ? filters.energy.filter(e => e !== energy)
+      : [...filters.energy, energy];
+    onFiltersChange({ ...filters, energy: newEnergy });
   };
 
-  const toggleDuration = (duration: DurationTag | 'all') => {
-    // If clicking the same filter, deselect it
-    onFiltersChange({ ...filters, duration: filters.duration === duration ? 'all' : duration });
+  const toggleDuration = (duration: DurationTag) => {
+    const newDuration = filters.duration.includes(duration)
+      ? filters.duration.filter(d => d !== duration)
+      : [...filters.duration, duration];
+    onFiltersChange({ ...filters, duration: newDuration });
   };
 
   const toggleFavoritesOnly = () => {
@@ -34,19 +42,19 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
 
   const clearFilters = () => {
     onFiltersChange({
-      location: 'all',
-      players: 'all',
-      energy: 'all',
-      duration: 'all',
+      location: [],
+      players: [],
+      energy: [],
+      duration: [],
       showFavoritesOnly: false,
     });
   };
 
   const hasActiveFilters =
-    filters.location !== 'all' ||
-    filters.players !== 'all' ||
-    filters.energy !== 'all' ||
-    filters.duration !== 'all' ||
+    filters.location.length > 0 ||
+    filters.players.length > 0 ||
+    filters.energy.length > 0 ||
+    filters.duration.length > 0 ||
     filters.showFavoritesOnly;
 
   const inactiveButtonClass = isDarkMode
@@ -73,7 +81,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <button
                 onClick={() => toggleLocation('indoor')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                  filters.location === 'indoor'
+                  filters.location.includes('indoor')
                     ? 'bg-cyan-500 text-white shadow-sm'
                     : inactiveButtonClass
                 }`}
@@ -83,22 +91,12 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <button
                 onClick={() => toggleLocation('outdoor')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                  filters.location === 'outdoor'
+                  filters.location.includes('outdoor')
                     ? 'bg-green-500 text-white shadow-sm'
                     : inactiveButtonClass
                 }`}
               >
                 Extérieur
-              </button>
-              <button
-                onClick={() => toggleLocation('both')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                  filters.location === 'both'
-                    ? 'bg-blue-500 text-white shadow-sm'
-                    : inactiveButtonClass
-                }`}
-              >
-                Les deux
               </button>
             </div>
           </div>
@@ -110,9 +108,9 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Joueur ?</h3>
             </div>
             <div className="flex flex-wrap gap-2">
-              <button onClick={() => togglePlayers('solo')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players === 'solo' ? 'bg-purple-500 text-white shadow-sm' : inactiveButtonClass}`}>Solo</button>
-              <button onClick={() => togglePlayers('duo')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players === 'duo' ? 'bg-orange-500 text-white shadow-sm' : inactiveButtonClass}`}>Duo</button>
-              <button onClick={() => togglePlayers('multiple')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players === 'multiple' ? 'bg-pink-500 text-white shadow-sm' : inactiveButtonClass}`}>Plusieurs</button>
+              <button onClick={() => togglePlayers('solo')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players.includes('solo') ? 'bg-purple-500 text-white shadow-sm' : inactiveButtonClass}`}>Solo</button>
+              <button onClick={() => togglePlayers('duo')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players.includes('duo') ? 'bg-orange-500 text-white shadow-sm' : inactiveButtonClass}`}>Duo</button>
+              <button onClick={() => togglePlayers('multiple')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players.includes('multiple') ? 'bg-pink-500 text-white shadow-sm' : inactiveButtonClass}`}>Plusieurs</button>
             </div>
           </div>
 
@@ -123,9 +121,8 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Énergie</h3>
             </div>
             <div className="flex flex-wrap gap-2">
-              <button onClick={() => toggleEnergy('calm')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.energy === 'calm' ? 'bg-blue-500 text-white shadow-sm' : inactiveButtonClass}`}>Calme</button>
-              <button onClick={() => toggleEnergy('active')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.energy === 'active' ? 'bg-red-500 text-white shadow-sm' : inactiveButtonClass}`}>Actif</button>
-              <button onClick={() => toggleEnergy('mix')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.energy === 'mix' ? 'bg-yellow-500 text-white shadow-sm' : inactiveButtonClass}`}>Mix</button>
+              <button onClick={() => toggleEnergy('calm')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.energy.includes('calm') ? 'bg-blue-500 text-white shadow-sm' : inactiveButtonClass}`}>Calme</button>
+              <button onClick={() => toggleEnergy('active')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.energy.includes('active') ? 'bg-red-500 text-white shadow-sm' : inactiveButtonClass}`}>Actif</button>
             </div>
           </div>
 
@@ -136,9 +133,9 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Temps</h3>
             </div>
             <div className="flex flex-wrap gap-2">
-              <button onClick={() => toggleDuration('5-10')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration === '5-10' ? 'bg-teal-500 text-white shadow-sm' : inactiveButtonClass}`}>5-10m</button>
-              <button onClick={() => toggleDuration('10-30')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration === '10-30' ? 'bg-indigo-500 text-white shadow-sm' : inactiveButtonClass}`}>10-30m</button>
-              <button onClick={() => toggleDuration('30+')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration === '30+' ? 'bg-violet-500 text-white shadow-sm' : inactiveButtonClass}`}>30m+</button>
+              <button onClick={() => toggleDuration('5-10')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('5-10') ? 'bg-teal-500 text-white shadow-sm' : inactiveButtonClass}`}>5-10m</button>
+              <button onClick={() => toggleDuration('10-30')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('10-30') ? 'bg-indigo-500 text-white shadow-sm' : inactiveButtonClass}`}>10-30m</button>
+              <button onClick={() => toggleDuration('30+')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('30+') ? 'bg-violet-500 text-white shadow-sm' : inactiveButtonClass}`}>30m+</button>
             </div>
           </div>
 

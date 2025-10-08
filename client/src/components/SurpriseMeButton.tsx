@@ -35,7 +35,7 @@ const SurpriseMeButton = ({ activities }: SurpriseMeButtonProps) => {
       duo: 'Duo',
       multiple: 'Plusieurs',
     };
-    return labels[players];
+    return players.map(p => labels[p]).join(', ');
   };
 
   const getLocationText = (activity: Activity) => {
@@ -43,9 +43,8 @@ const SurpriseMeButton = ({ activities }: SurpriseMeButtonProps) => {
     const labels: { [key: string]: string } = {
       indoor: 'Intérieur',
       outdoor: 'Extérieur',
-      both: 'Intérieur/Extérieur',
     };
-    return labels[location];
+    return location.map(l => labels[l]).join(', ');
   };
 
   return (

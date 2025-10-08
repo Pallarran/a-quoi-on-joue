@@ -18,16 +18,15 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
       duo: 'Duo',
       multiple: 'Plusieurs',
     };
-    return labels[activity.tags.players];
+    return activity.tags.players.map(p => labels[p]).join(', ');
   };
 
   const getEnergyText = () => {
     const labels: { [key: string]: string } = {
       calm: 'Calme',
       active: 'Actif',
-      mix: 'Mix',
     };
-    return labels[activity.tags.energy];
+    return activity.tags.energy.map(e => labels[e]).join(', ');
   };
 
   const getDurationText = () => {
@@ -36,16 +35,15 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
       '10-30': '10-30 min',
       '30+': '30+ min',
     };
-    return labels[activity.tags.duration];
+    return activity.tags.duration.map(d => labels[d]).join(', ');
   };
 
   const getLocationText = () => {
     const labels: { [key: string]: string } = {
       indoor: 'Intérieur',
       outdoor: 'Extérieur',
-      both: 'Les deux',
     };
-    return labels[activity.tags.location];
+    return activity.tags.location.map(l => labels[l]).join(', ');
   };
 
   // Different emoji based on activity name

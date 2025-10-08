@@ -15,10 +15,10 @@ function KidsApp() {
   const { isDarkMode, toggleTheme } = useTheme();
 
   const [filters, setFilters] = useState<ActivityFilters>({
-    location: 'all',
-    players: 'all',
-    energy: 'all',
-    duration: 'all',
+    location: [],
+    players: [],
+    energy: [],
+    duration: [],
     showFavoritesOnly: false,
   });
 
@@ -28,19 +28,21 @@ function KidsApp() {
         return false;
       }
 
-      if (filters.location !== 'all' && activity.tags.location !== filters.location) {
+      // If filter is empty (no selections), show all
+      // If filter has selections, activity must match at least one selected value
+      if (filters.location.length > 0 && !filters.location.some(loc => activity.tags.location.includes(loc))) {
         return false;
       }
 
-      if (filters.players !== 'all' && activity.tags.players !== filters.players) {
+      if (filters.players.length > 0 && !filters.players.some(p => activity.tags.players.includes(p))) {
         return false;
       }
 
-      if (filters.energy !== 'all' && activity.tags.energy !== filters.energy) {
+      if (filters.energy.length > 0 && !filters.energy.some(e => activity.tags.energy.includes(e))) {
         return false;
       }
 
-      if (filters.duration !== 'all' && activity.tags.duration !== filters.duration) {
+      if (filters.duration.length > 0 && !filters.duration.some(d => activity.tags.duration.includes(d))) {
         return false;
       }
 

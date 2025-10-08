@@ -16,10 +16,10 @@ const AdminPanel = () => {
   const [formData, setFormData] = useState({
     name: '',
     image: '',
-    location: 'indoor' as LocationTag,
-    players: 'solo' as PlayerTag,
-    energy: 'calm' as EnergyTag,
-    duration: '10-30' as DurationTag,
+    location: [] as LocationTag[],
+    players: [] as PlayerTag[],
+    energy: [] as EnergyTag[],
+    duration: [] as DurationTag[],
     houseLocation: '',
   });
 
@@ -123,14 +123,22 @@ const AdminPanel = () => {
     setFormData({
       name: '',
       image: '',
-      location: 'indoor',
-      players: 'solo',
-      energy: 'calm',
-      duration: '10-30',
+      location: [],
+      players: [],
+      energy: [],
+      duration: [],
       houseLocation: '',
     });
     setEditingId(null);
     setShowForm(false);
+  };
+
+  const toggleTag = <T,>(category: 'location' | 'players' | 'energy' | 'duration', value: T) => {
+    const currentValues = formData[category] as T[];
+    const newValues = currentValues.includes(value)
+      ? currentValues.filter(v => v !== value)
+      : [...currentValues, value];
+    setFormData({ ...formData, [category]: newValues });
   };
 
   if (!isAuthenticated) {
@@ -237,55 +245,117 @@ const AdminPanel = () => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">Localisation</label>
-                <select
-                  value={formData.location}
-                  onChange={(e) => setFormData({ ...formData, location: e.target.value as LocationTag })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="indoor">Intérieur</option>
-                  <option value="outdoor">Extérieur</option>
-                  <option value="both">Les deux</option>
-                </select>
+                <label className="block text-gray-700 font-medium mb-2">🏠 Localisation (sélection multiple)</label>
+                <div className="flex flex-wrap gap-2">
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.location.includes('indoor')}
+                      onChange={() => toggleTag('location', 'indoor')}
+                      className="w-4 h-4"
+                    />
+                    <span>Intérieur</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.location.includes('outdoor')}
+                      onChange={() => toggleTag('location', 'outdoor')}
+                      className="w-4 h-4"
+                    />
+                    <span>Extérieur</span>
+                  </label>
+                </div>
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">👥 Joueur</label>
-                <select
-                  value={formData.players}
-                  onChange={(e) => setFormData({ ...formData, players: e.target.value as PlayerTag })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="solo">Solo</option>
-                  <option value="duo">Duo</option>
-                  <option value="multiple">Plusieurs</option>
-                </select>
+                <label className="block text-gray-700 font-medium mb-2">👥 Joueur (sélection multiple)</label>
+                <div className="flex flex-wrap gap-2">
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.players.includes('solo')}
+                      onChange={() => toggleTag('players', 'solo')}
+                      className="w-4 h-4"
+                    />
+                    <span>Solo</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.players.includes('duo')}
+                      onChange={() => toggleTag('players', 'duo')}
+                      className="w-4 h-4"
+                    />
+                    <span>Duo</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.players.includes('multiple')}
+                      onChange={() => toggleTag('players', 'multiple')}
+                      className="w-4 h-4"
+                    />
+                    <span>Plusieurs</span>
+                  </label>
+                </div>
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">⚡ Énergie</label>
-                <select
-                  value={formData.energy}
-                  onChange={(e) => setFormData({ ...formData, energy: e.target.value as EnergyTag })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="calm">Calme</option>
-                  <option value="active">Actif</option>
-                  <option value="mix">Mix</option>
-                </select>
+                <label className="block text-gray-700 font-medium mb-2">⚡ Énergie (sélection multiple)</label>
+                <div className="flex flex-wrap gap-2">
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.energy.includes('calm')}
+                      onChange={() => toggleTag('energy', 'calm')}
+                      className="w-4 h-4"
+                    />
+                    <span>Calme</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.energy.includes('active')}
+                      onChange={() => toggleTag('energy', 'active')}
+                      className="w-4 h-4"
+                    />
+                    <span>Actif</span>
+                  </label>
+                </div>
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">⏱️ Temps</label>
-                <select
-                  value={formData.duration}
-                  onChange={(e) => setFormData({ ...formData, duration: e.target.value as DurationTag })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="5-10">5-10 min</option>
-                  <option value="10-30">10-30 min</option>
-                  <option value="30+">30+ min</option>
-                </select>
+                <label className="block text-gray-700 font-medium mb-2">⏱️ Temps (sélection multiple)</label>
+                <div className="flex flex-wrap gap-2">
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.duration.includes('5-10')}
+                      onChange={() => toggleTag('duration', '5-10')}
+                      className="w-4 h-4"
+                    />
+                    <span>5-10 min</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.duration.includes('10-30')}
+                      onChange={() => toggleTag('duration', '10-30')}
+                      className="w-4 h-4"
+                    />
+                    <span>10-30 min</span>
+                  </label>
+                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input
+                      type="checkbox"
+                      checked={formData.duration.includes('30+')}
+                      onChange={() => toggleTag('duration', '30+')}
+                      className="w-4 h-4"
+                    />
+                    <span>30+ min</span>
+                  </label>
+                </div>
               </div>
 
               <div className="mb-6">
@@ -333,18 +403,26 @@ const AdminPanel = () => {
                 <div className="flex-1">
                   <h3 className="font-bold text-lg">{activity.name}</h3>
                   <div className="flex flex-wrap gap-2 mt-2">
-                    <span className="text-xs px-2 py-1 bg-cyan-100 text-cyan-700 rounded">
-                      {activity.tags.location === 'indoor' ? 'Intérieur' : activity.tags.location === 'outdoor' ? 'Extérieur' : 'Les deux'}
-                    </span>
-                    <span className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded">
-                      {activity.tags.players === 'solo' ? 'Solo' : activity.tags.players === 'duo' ? 'Duo' : 'Plusieurs'}
-                    </span>
-                    <span className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded">
-                      {activity.tags.energy === 'calm' ? 'Calme' : activity.tags.energy === 'active' ? 'Actif' : 'Mix'}
-                    </span>
-                    <span className="text-xs px-2 py-1 bg-teal-100 text-teal-700 rounded">
-                      {activity.tags.duration === '5-10' ? '5-10m' : activity.tags.duration === '10-30' ? '10-30m' : '30m+'}
-                    </span>
+                    {activity.tags.location.map(loc => (
+                      <span key={loc} className="text-xs px-2 py-1 bg-cyan-100 text-cyan-700 rounded">
+                        {loc === 'indoor' ? 'Intérieur' : 'Extérieur'}
+                      </span>
+                    ))}
+                    {activity.tags.players.map(p => (
+                      <span key={p} className="text-xs px-2 py-1 bg-purple-100 text-purple-700 rounded">
+                        {p === 'solo' ? 'Solo' : p === 'duo' ? 'Duo' : 'Plusieurs'}
+                      </span>
+                    ))}
+                    {activity.tags.energy.map(e => (
+                      <span key={e} className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                        {e === 'calm' ? 'Calme' : 'Actif'}
+                      </span>
+                    ))}
+                    {activity.tags.duration.map(d => (
+                      <span key={d} className="text-xs px-2 py-1 bg-teal-100 text-teal-700 rounded">
+                        {d === '5-10' ? '5-10m' : d === '10-30' ? '10-30m' : '30m+'}
+                      </span>
+                    ))}
                     {activity.houseLocation && (
                       <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">
                         📍 {activity.houseLocation}
