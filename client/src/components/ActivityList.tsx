@@ -5,16 +5,17 @@ interface ActivityListProps {
   activities: Activity[];
   favorites: string[];
   onToggleFavorite: (id: string) => void;
+  isDarkMode?: boolean;
 }
 
-const ActivityList = ({ activities, favorites, onToggleFavorite }: ActivityListProps) => {
+const ActivityList = ({ activities, favorites, onToggleFavorite, isDarkMode = false }: ActivityListProps) => {
   if (activities.length === 0) {
     return (
       <div className="text-center py-16">
-        <p className="text-2xl text-gray-500 font-medium">
+        <p className={`text-2xl font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
           Aucune activité trouvée 😢
         </p>
-        <p className="text-gray-400 mt-2">
+        <p className={`mt-2 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
           Essaie de changer les filtres !
         </p>
       </div>
@@ -29,6 +30,7 @@ const ActivityList = ({ activities, favorites, onToggleFavorite }: ActivityListP
           activity={activity}
           isFavorite={favorites.includes(activity.id)}
           onToggleFavorite={() => onToggleFavorite(activity.id)}
+          isDarkMode={isDarkMode}
         />
       ))}
     </div>
