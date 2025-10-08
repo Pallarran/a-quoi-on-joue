@@ -80,33 +80,35 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
       <div className={`rounded-2xl shadow-sm border p-6 ${
         isDarkMode ? 'bg-[#0a2a3d] border-gray-700' : 'bg-white border-gray-100'
       }`}>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[1.2fr_1.2fr_1fr_0.9fr_1fr_0.8fr] gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[0.9fr_1.3fr_1fr_0.8fr_1fr_0.9fr] gap-2">
           {/* Location Filters */}
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-base">🏠</span>
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Où ?</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               <button
                 onClick={() => toggleLocation('indoor')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                title="Intérieur"
+                className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${
                   filters.location.includes('indoor')
                     ? 'bg-cyan-500 text-white shadow-sm'
                     : inactiveButtonClass
                 }`}
               >
-                Intérieur
+                🏠
               </button>
               <button
                 onClick={() => toggleLocation('outdoor')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                title="Extérieur"
+                className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${
                   filters.location.includes('outdoor')
                     ? 'bg-green-500 text-white shadow-sm'
                     : inactiveButtonClass
                 }`}
               >
-                Extérieur
+                🌳
               </button>
             </div>
           </div>
@@ -117,21 +119,21 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <span className="text-base">{getSeasonEmoji(getCurrentSeason())}</span>
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Saison</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <button onClick={() => toggleSeason('spring')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('spring') ? 'bg-pink-400 text-white shadow-sm' : inactiveButtonClass}`}>
-                {getSeasonEmoji('spring')} {getSeasonLabel('spring')}
+            <div className="flex flex-wrap gap-1.5">
+              <button onClick={() => toggleSeason('spring')} title={getSeasonLabel('spring')} className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.season.includes('spring') ? 'bg-pink-400 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('spring')}
               </button>
-              <button onClick={() => toggleSeason('summer')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('summer') ? 'bg-yellow-400 text-gray-900 shadow-sm' : inactiveButtonClass}`}>
-                {getSeasonEmoji('summer')} {getSeasonLabel('summer')}
+              <button onClick={() => toggleSeason('summer')} title={getSeasonLabel('summer')} className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.season.includes('summer') ? 'bg-yellow-400 text-gray-900 shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('summer')}
               </button>
-              <button onClick={() => toggleSeason('fall')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('fall') ? 'bg-orange-500 text-white shadow-sm' : inactiveButtonClass}`}>
-                {getSeasonEmoji('fall')} {getSeasonLabel('fall')}
+              <button onClick={() => toggleSeason('fall')} title={getSeasonLabel('fall')} className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.season.includes('fall') ? 'bg-orange-500 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('fall')}
               </button>
-              <button onClick={() => toggleSeason('winter')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('winter') ? 'bg-blue-400 text-white shadow-sm' : inactiveButtonClass}`}>
-                {getSeasonEmoji('winter')} {getSeasonLabel('winter')}
+              <button onClick={() => toggleSeason('winter')} title={getSeasonLabel('winter')} className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.season.includes('winter') ? 'bg-blue-400 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('winter')}
               </button>
-              <button onClick={() => toggleSeason('all-year')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.season.includes('all-year') ? 'bg-emerald-500 text-white shadow-sm' : inactiveButtonClass}`}>
-                {getSeasonEmoji('all-year')} Toute
+              <button onClick={() => toggleSeason('all-year')} title={getSeasonLabel('all-year')} className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.season.includes('all-year') ? 'bg-emerald-500 text-white shadow-sm' : inactiveButtonClass}`}>
+                {getSeasonEmoji('all-year')}
               </button>
             </div>
           </div>
@@ -142,10 +144,10 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <span className="text-base">👥</span>
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Joueur ?</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <button onClick={() => togglePlayers('solo')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players.includes('solo') ? 'bg-purple-500 text-white shadow-sm' : inactiveButtonClass}`}>Solo</button>
-              <button onClick={() => togglePlayers('duo')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players.includes('duo') ? 'bg-orange-500 text-white shadow-sm' : inactiveButtonClass}`}>Duo</button>
-              <button onClick={() => togglePlayers('multiple')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.players.includes('multiple') ? 'bg-pink-500 text-white shadow-sm' : inactiveButtonClass}`}>Plusieurs</button>
+            <div className="flex flex-wrap gap-1.5">
+              <button onClick={() => togglePlayers('solo')} title="Solo" className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.players.includes('solo') ? 'bg-purple-500 text-white shadow-sm' : inactiveButtonClass}`}>👤</button>
+              <button onClick={() => togglePlayers('duo')} title="Duo" className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.players.includes('duo') ? 'bg-orange-500 text-white shadow-sm' : inactiveButtonClass}`}>👥</button>
+              <button onClick={() => togglePlayers('multiple')} title="Plusieurs" className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.players.includes('multiple') ? 'bg-pink-500 text-white shadow-sm' : inactiveButtonClass}`}>👨‍👩‍👧‍👦</button>
             </div>
           </div>
 
@@ -155,9 +157,9 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <span className="text-base">⚡</span>
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Énergie</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <button onClick={() => toggleEnergy('calm')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.energy.includes('calm') ? 'bg-blue-500 text-white shadow-sm' : inactiveButtonClass}`}>Calme</button>
-              <button onClick={() => toggleEnergy('active')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.energy.includes('active') ? 'bg-red-500 text-white shadow-sm' : inactiveButtonClass}`}>Actif</button>
+            <div className="flex flex-wrap gap-1.5">
+              <button onClick={() => toggleEnergy('calm')} title="Calme" className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.energy.includes('calm') ? 'bg-blue-500 text-white shadow-sm' : inactiveButtonClass}`}>🧘</button>
+              <button onClick={() => toggleEnergy('active')} title="Actif" className={`px-2 py-1 rounded-lg text-base font-medium transition-all ${filters.energy.includes('active') ? 'bg-red-500 text-white shadow-sm' : inactiveButtonClass}`}>⚡</button>
             </div>
           </div>
 
@@ -167,10 +169,10 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
               <span className="text-base">⏱️</span>
               <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Temps</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <button onClick={() => toggleDuration('5-10')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('5-10') ? 'bg-teal-500 text-white shadow-sm' : inactiveButtonClass}`}>5-10m</button>
-              <button onClick={() => toggleDuration('10-30')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('10-30') ? 'bg-indigo-500 text-white shadow-sm' : inactiveButtonClass}`}>10-30m</button>
-              <button onClick={() => toggleDuration('30+')} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('30+') ? 'bg-violet-500 text-white shadow-sm' : inactiveButtonClass}`}>30m+</button>
+            <div className="flex flex-wrap gap-1.5">
+              <button onClick={() => toggleDuration('5-10')} title="5-10 minutes" className={`px-2 py-1 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('5-10') ? 'bg-teal-500 text-white shadow-sm' : inactiveButtonClass}`}>5-10</button>
+              <button onClick={() => toggleDuration('10-30')} title="10-30 minutes" className={`px-2 py-1 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('10-30') ? 'bg-indigo-500 text-white shadow-sm' : inactiveButtonClass}`}>10-30</button>
+              <button onClick={() => toggleDuration('30+')} title="30+ minutes" className={`px-2 py-1 rounded-lg text-xs font-medium transition-all ${filters.duration.includes('30+') ? 'bg-violet-500 text-white shadow-sm' : inactiveButtonClass}`}>30+</button>
             </div>
           </div>
 
