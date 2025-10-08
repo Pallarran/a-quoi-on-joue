@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: a-quoi-on-joue
+    ports:
+      - "3010:3000"
+    volumes:
+      - ./server/src/data:/app/data
+      - ./server/uploads:/app/uploads
+      - ./server/public/images:/app/public/images
+    environment:
+      - PORT=3000
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - NODE_ENV=production
+    restart: unless-stopped
