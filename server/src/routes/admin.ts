@@ -8,6 +8,19 @@ const __dirname = dirname(__filename);
 
 const router = express.Router();
 
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+
+// POST verify password
+router.post('/verify', (req, res) => {
+  const password = req.headers['x-admin-password'] as string;
+
+  if (password === ADMIN_PASSWORD) {
+    res.json({ valid: true });
+  } else {
+    res.status(401).json({ valid: false, error: 'Invalid password' });
+  }
+});
+
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

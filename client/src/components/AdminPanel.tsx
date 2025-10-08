@@ -23,14 +23,32 @@ const AdminPanel = () => {
     houseLocation: '',
   });
 
-  const handleAuth = (e: FormEvent) => {
+  const handleAuth = async (e: FormEvent) => {
     e.preventDefault();
-    // Simple client-side check - password is validated on backend
-    if (password.length > 0) {
-      setIsAuthenticated(true);
-      setAuthError('');
-    } else {
+
+    if (password.length === 0) {
       setAuthError('Mot de passe requis');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/admin/verify', {
+        method: 'POST',
+        headers: {
+          'x-admin-password': password,
+        },
+      });
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        setAuthError('');
+      } else {
+        setAuthError('Mot de passe incorrect');
+        setPassword('');
+      }
+    } catch (error) {
+      setAuthError('Erreur de connexion');
+      console.error('Auth error:', error);
     }
   };
 
