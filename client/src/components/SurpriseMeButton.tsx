@@ -28,14 +28,14 @@ const SurpriseMeButton = ({ activities }: SurpriseMeButtonProps) => {
     setSelectedActivity(null);
   };
 
-  const getParticipantsText = (activity: Activity) => {
-    const { participants } = activity.tags;
+  const getPlayersText = (activity: Activity) => {
+    const { players } = activity.tags;
     const labels: { [key: string]: string } = {
       solo: 'Solo',
-      sibling: 'Frère et sœur',
-      family: 'Famille',
+      duo: 'Duo',
+      multiple: 'Plusieurs',
     };
-    return participants.map(p => labels[p]).join(', ');
+    return labels[players];
   };
 
   const getLocationText = (activity: Activity) => {
@@ -96,7 +96,7 @@ const SurpriseMeButton = ({ activities }: SurpriseMeButtonProps) => {
                   {getLocationText(selectedActivity)}
                 </span>
                 <span className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-lg font-medium">
-                  {getParticipantsText(selectedActivity)}
+                  {getPlayersText(selectedActivity)}
                 </span>
               </div>
 
