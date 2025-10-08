@@ -46,10 +46,11 @@ app.delete('/api/activities/:id', adminAuth, activitiesRouter);
 
 // Serve React app in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(join(__dirname, '../../client/dist')));
+  const clientPath = join(__dirname, '../client/dist');
+  app.use(express.static(clientPath));
   // Fallback to index.html for client-side routing
   app.use((req, res) => {
-    res.sendFile(join(__dirname, '../../client/dist/index.html'));
+    res.sendFile(join(clientPath, 'index.html'));
   });
 }
 
