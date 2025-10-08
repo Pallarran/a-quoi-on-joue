@@ -76,13 +76,13 @@ function KidsApp() {
 
   return (
     <div className={`min-h-screen transition-colors ${isDarkMode ? 'bg-[#091f2b]' : 'bg-white'}`}>
-      <div className="container mx-auto px-6 py-8 max-w-7xl">
+      <div className="container mx-auto px-6 py-4 max-w-7xl">
         {/* Header */}
-        <header className="mb-8">
-          <div className={`rounded-2xl shadow-sm border p-8 text-center bg-cover bg-center relative ${
+        <header className="mb-4">
+          <div className={`rounded-2xl shadow-sm border p-6 text-center bg-cover bg-center relative ${
             isDarkMode
-              ? 'bg-gradient-to-br from-[#0a2a3d] to-[#0d3449] border-gray-700'
-              : 'bg-gradient-to-br from-cyan-50 to-blue-50 border-gray-100'
+              ? 'bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 border-gray-700'
+              : 'bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 border-gray-100'
           }`}>
             <button
               onClick={toggleTheme}
@@ -99,17 +99,17 @@ function KidsApp() {
               ⚙️
             </Link>
             <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-2xl shadow-md flex items-center justify-center text-3xl">
+              <div className="flex items-center justify-center text-3xl">
                 ♟️
               </div>
-              <h1 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h1 className="text-3xl font-bold text-white">
                 À quoi on joue ?
               </h1>
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl shadow-md flex items-center justify-center text-3xl">
+              <div className="flex items-center justify-center text-3xl">
                 🎨
               </div>
             </div>
-            <p className={`text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className="text-base text-white/90">
               Trouve une super activité à faire !
             </p>
           </div>

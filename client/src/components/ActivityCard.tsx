@@ -165,24 +165,24 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
               )}
 
               {/* Tags */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+              <div className="grid grid-cols-2 gap-2 mb-6">
+                <div className={`p-3 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
                   <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Où ?</div>
                   <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getLocationText()}</div>
                 </div>
-                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                <div className={`p-3 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
                   <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Joueurs</div>
                   <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getPlayersText()}</div>
                 </div>
-                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                <div className={`p-3 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
                   <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Énergie</div>
                   <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getEnergyText()}</div>
                 </div>
-                <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                <div className={`p-3 rounded-xl ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
                   <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Durée</div>
                   <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getDurationText()}</div>
                 </div>
-                <div className={`p-4 rounded-xl col-span-2 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                <div className={`p-3 rounded-xl col-span-2 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
                   <div className={`text-sm mb-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Saison</div>
                   <div className={`font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{getSeasonText()}</div>
                 </div>

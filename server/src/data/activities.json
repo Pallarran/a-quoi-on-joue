@@ -4,11 +4,21 @@
     "name": "Chasse au Trésor",
     "image": "/images/chasse-tresor.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["multiple"],
-      "energy": ["active"],
-      "duration": ["10-30"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "multiple"
+      ],
+      "energy": [
+        "active"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Salon",
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -18,11 +28,21 @@
     "name": "Statues Musicales",
     "image": "/images/statues-musicales.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["duo"],
-      "energy": ["active"],
-      "duration": ["5-10"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "active"
+      ],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Salon",
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -32,11 +52,21 @@
     "name": "Course de Cuillères",
     "image": "/images/course-cuilleres.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["multiple"],
-      "energy": ["active"],
-      "duration": ["5-10"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "multiple"
+      ],
+      "energy": [
+        "active"
+      ],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Cuisine",
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -46,11 +76,21 @@
     "name": "Dessin à l'Aveugle",
     "image": "/images/dessin-aveugle.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["solo"],
-      "energy": ["calm"],
-      "duration": ["10-30"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "solo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Chambre",
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -60,11 +100,24 @@
     "name": "Cache-Cache",
     "image": "/images/cache-cache.jpg",
     "tags": {
-      "location": ["indoor", "outdoor"],
-      "players": ["multiple"],
-      "energy": ["active"],
-      "duration": ["10-30"],
-      "season": ["spring", "summer", "fall"]
+      "location": [
+        "indoor",
+        "outdoor"
+      ],
+      "players": [
+        "multiple"
+      ],
+      "energy": [
+        "active"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall"
+      ]
     },
     "createdAt": "2025-10-07T00:00:00.000Z"
   },
@@ -73,11 +126,22 @@
     "name": "Jeu de Mime",
     "image": "/images/jeu-mime.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["multiple"],
-      "energy": ["calm", "active"],
-      "duration": ["10-30"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "multiple"
+      ],
+      "energy": [
+        "calm",
+        "active"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Salon",
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -87,11 +151,21 @@
     "name": "Yoga Animalier",
     "image": "/images/yoga-animalier.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["solo"],
-      "energy": ["calm"],
-      "duration": ["5-10"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "solo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Salon",
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -101,11 +175,22 @@
     "name": "Chasse aux Couleurs",
     "image": "/images/chasse-couleurs.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["solo"],
-      "energy": ["calm", "active"],
-      "duration": ["10-30"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "solo"
+      ],
+      "energy": [
+        "calm",
+        "active"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "createdAt": "2025-10-07T00:00:00.000Z"
   },
@@ -114,11 +199,21 @@
     "name": "Tente en Couverture",
     "image": "/images/tente-couverture.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["duo"],
-      "energy": ["calm"],
-      "duration": ["30+"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Chambre",
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -128,27 +223,23 @@
     "name": "Pique-nique Imaginaire",
     "image": "/images/pique-nique.jpg",
     "tags": {
-      "location": ["indoor"],
-      "players": ["duo"],
-      "energy": ["calm"],
-      "duration": ["30+"],
-      "season": ["all-year"]
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "all-year"
+      ]
     },
     "houseLocation": "Cuisine",
     "createdAt": "2025-10-07T00:00:00.000Z"
-  },
-  {
-    "id": "1759887411728",
-    "name": "Test 1",
-    "image": "",
-    "tags": {
-      "location": ["indoor"],
-      "players": ["duo"],
-      "energy": ["calm"],
-      "duration": ["10-30"],
-      "season": ["all-year"]
-    },
-    "houseLocation": "Salle de jeux",
-    "createdAt": "2025-10-08T01:36:51.728Z"
   }
 ]
