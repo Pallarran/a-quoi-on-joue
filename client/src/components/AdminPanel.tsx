@@ -13,6 +13,7 @@ const AdminPanel = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -201,21 +202,25 @@ const AdminPanel = () => {
           </button>
         </div>
 
-        {/* Form */}
+        {/* Form Modal */}
         {showForm && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">
-                {editingId ? 'Modifier l\'activité' : 'Ajouter une activité'}
-              </h2>
-              <button onClick={resetForm} className="text-gray-500 hover:text-gray-700">
-                <span className="text-2xl">✖️</span>
-              </button>
-            </div>
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={resetForm}>
+            <div
+              className="bg-white rounded-2xl shadow-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">
+                  {editingId ? 'Modifier l\'activité' : 'Ajouter une activité'}
+                </h2>
+                <button onClick={resetForm} className="text-gray-500 hover:text-gray-700">
+                  <span className="text-2xl">✖️</span>
+                </button>
+              </div>
 
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">Nom de l'activité</label>
+              <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">Nom de l'activité</label>
                 <input
                   type="text"
                   required
@@ -225,8 +230,8 @@ const AdminPanel = () => {
                 />
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">Image</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">Image</label>
                 <div className="flex gap-4 items-center">
                   <input
                     type="text"
@@ -249,8 +254,8 @@ const AdminPanel = () => {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">🏠 Localisation (sélection multiple)</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">🏠 Localisation (sélection multiple)</label>
                 <div className="flex flex-wrap gap-2">
                   <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
@@ -273,8 +278,8 @@ const AdminPanel = () => {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">👥 Joueur (sélection multiple)</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">👥 Joueur (sélection multiple)</label>
                 <div className="flex flex-wrap gap-2">
                   <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
@@ -306,8 +311,8 @@ const AdminPanel = () => {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">⚡ Énergie (sélection multiple)</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">⚡ Énergie (sélection multiple)</label>
                 <div className="flex flex-wrap gap-2">
                   <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
@@ -330,8 +335,8 @@ const AdminPanel = () => {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">⏱️ Temps (sélection multiple)</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">⏱️ Temps (sélection multiple)</label>
                 <div className="flex flex-wrap gap-2">
                   <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
@@ -363,8 +368,8 @@ const AdminPanel = () => {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2">🌍 Saison (sélection multiple)</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">🌍 Saison (sélection multiple)</label>
                 <div className="flex flex-wrap gap-2">
                   <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
@@ -414,8 +419,8 @@ const AdminPanel = () => {
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-gray-700 font-medium mb-2">📍 Emplacement dans la maison (optionnel)</label>
+              <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">📍 Emplacement dans la maison (optionnel)</label>
                 <input
                   type="text"
                   placeholder="ex: Salon, Cuisine, Jardin"
@@ -441,20 +446,56 @@ const AdminPanel = () => {
                 </button>
               </div>
             </form>
+            </div>
           </div>
         )}
 
         {/* Activities List */}
         <div className="bg-white rounded-2xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-6">Activités existantes</h2>
+          <h2 className="text-2xl font-bold mb-4">Activités existantes</h2>
+
+          {/* Search Bar */}
+          <div className="mb-6">
+            <input
+              type="text"
+              placeholder="🔍 Rechercher une activité..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
           <div className="space-y-4">
-            {activities.map(activity => (
+            {(() => {
+              const filteredActivities = activities.filter(activity =>
+                activity.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                activity.houseLocation?.toLowerCase().includes(searchQuery.toLowerCase())
+              );
+
+              if (filteredActivities.length === 0) {
+                return (
+                  <div className="text-center py-12 text-gray-500">
+                    <p className="text-4xl mb-4">🔍</p>
+                    <p className="text-lg">Aucune activité trouvée</p>
+                  </div>
+                );
+              }
+
+              return filteredActivities.map(activity => (
               <div
                 key={activity.id}
                 className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:bg-gray-50"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg flex items-center justify-center text-4xl">
-                  🌟
+                <div className="w-20 h-20 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg flex items-center justify-center text-4xl overflow-hidden">
+                  {activity.image ? (
+                    <img
+                      src={activity.image}
+                      alt={activity.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span>🌟</span>
+                  )}
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-lg">{activity.name}</h3>
@@ -506,7 +547,8 @@ const AdminPanel = () => {
                   </button>
                 </div>
               </div>
-            ))}
+              ));
+            })()}
           </div>
         </div>
       </div>

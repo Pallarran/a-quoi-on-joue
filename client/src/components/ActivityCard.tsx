@@ -77,10 +77,18 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
           className="relative"
           onClick={() => setShowModal(true)}
         >
-          <div className={`w-full h-56 flex items-center justify-center rounded-2xl ${
+          <div className={`w-full h-56 flex items-center justify-center rounded-2xl overflow-hidden ${
             isDarkMode ? 'bg-gradient-to-br from-[#0d3449] to-[#0a2a3d]' : 'bg-gradient-to-br from-cyan-50 to-blue-50'
           }`}>
-            <span className="text-7xl group-hover:scale-110 transition-transform">{getEmoji()}</span>
+            {activity.image ? (
+              <img
+                src={activity.image}
+                alt={activity.name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+            ) : (
+              <span className="text-7xl group-hover:scale-110 transition-transform">{getEmoji()}</span>
+            )}
           </div>
 
           {/* Name bubble at bottom-left (dynamic size) */}
@@ -130,10 +138,18 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
 
             {/* Image/Emoji */}
             <div className="relative">
-              <div className={`w-full h-64 md:h-80 flex items-center justify-center ${
+              <div className={`w-full h-64 md:h-80 flex items-center justify-center overflow-hidden ${
                 isDarkMode ? 'bg-gradient-to-br from-[#0d3449] to-[#0a2a3d]' : 'bg-gradient-to-br from-cyan-50 to-blue-50'
               }`}>
-                <span className="text-9xl">{getEmoji()}</span>
+                {activity.image ? (
+                  <img
+                    src={activity.image}
+                    alt={activity.name}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <span className="text-9xl">{getEmoji()}</span>
+                )}
               </div>
             </div>
 
