@@ -4,6 +4,7 @@ import { useActivities } from './hooks/useActivities';
 import { useFavorites } from './hooks/useFavorites';
 import { useTheme } from './hooks/useTheme';
 import { ActivityFilters } from './types/Activity';
+import { getCurrentSeason } from './utils/seasons';
 import FilterBar from './components/FilterBar';
 import ActivityList from './components/ActivityList';
 import SurpriseMeButton from './components/SurpriseMeButton';
@@ -19,7 +20,7 @@ function KidsApp() {
     players: [],
     energy: [],
     duration: [],
-    season: ['spring', 'summer', 'fall', 'winter'], // Default to all seasons
+    season: [getCurrentSeason()], // Default to current season
     showFavoritesOnly: false,
   });
 

@@ -1,5 +1,5 @@
 import { ActivityFilters, LocationTag, PlayerTag, EnergyTag, DurationTag, SeasonTag } from '../types/Activity';
-import { getSeasonEmoji, getSeasonLabel } from '../utils/seasons';
+import { getSeasonEmoji, getSeasonLabel, getCurrentSeason } from '../utils/seasons';
 import { RotateCcw } from 'lucide-react';
 
 interface FilterBarProps {
@@ -55,7 +55,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
       players: [],
       energy: [],
       duration: [],
-      season: ['spring', 'summer', 'fall', 'winter'], // Reset to all seasons
+      season: [getCurrentSeason()], // Reset to current season
       showFavoritesOnly: false,
     });
   };
@@ -65,7 +65,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
     filters.players.length > 0 ||
     filters.energy.length > 0 ||
     filters.duration.length > 0 ||
-    filters.season.length !== 4 ||
+    (filters.season.length !== 1 || filters.season[0] !== getCurrentSeason()) ||
     filters.showFavoritesOnly;
 
   const inactiveButtonClass = isDarkMode
