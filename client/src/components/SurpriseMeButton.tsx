@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, RotateCw } from 'lucide-react';
 import { Activity } from '../types/Activity';
+import { getSeasonEmoji, getSeasonLabel } from '../utils/seasons';
 
 interface SurpriseMeButtonProps {
   activities: Activity[];
@@ -47,6 +48,27 @@ const SurpriseMeButton = ({ activities }: SurpriseMeButtonProps) => {
     return location.map(l => labels[l]).join(', ');
   };
 
+  const getEnergyText = (activity: Activity) => {
+    const labels: { [key: string]: string } = {
+      calm: 'Calme',
+      active: 'Actif',
+    };
+    return activity.tags.energy.map(e => labels[e]).join(', ');
+  };
+
+  const getDurationText = (activity: Activity) => {
+    const labels: { [key: string]: string} = {
+      '5-10': '5-10 min',
+      '10-30': '10-30 min',
+      '30+': '30+ min',
+    };
+    return activity.tags.duration.map(d => labels[d]).join(', ');
+  };
+
+  const getSeasonText = (activity: Activity) => {
+    return activity.tags.season.map(s => `${getSeasonEmoji(s)} ${getSeasonLabel(s)}`).join(', ');
+  };
+
   return (
     <>
       {/* Floating Button */}
@@ -77,7 +99,7 @@ const SurpriseMeButton = ({ activities }: SurpriseMeButtonProps) => {
               <img
                 src={`${API_URL}${selectedActivity.image}`}
                 alt={selectedActivity.name}
-                className="w-full h-64 md:h-80 object-cover rounded-t-3xl"
+                className="w-full h-64 md:h-80 object-contain rounded-t-3xl bg-gradient-to-br from-cyan-50 to-blue-50"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x400?text=Image';
                 }}
@@ -90,13 +112,36 @@ const SurpriseMeButton = ({ activities }: SurpriseMeButtonProps) => {
                 {selectedActivity.name}
               </h2>
 
-              <div className="flex flex-wrap justify-center gap-3 mb-8">
-                <span className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-lg font-medium">
-                  {getLocationText(selectedActivity)}
-                </span>
-                <span className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-lg font-medium">
-                  {getPlayersText(selectedActivity)}
-                </span>
+              {/* House Location */}
+              {selectedActivity.houseLocation && (
+                <div className="flex items-center justify-center gap-2 mb-6 text-lg text-gray-600">
+                  <span className="text-xl">📍</span>
+                  <span className="font-medium">{selectedActivity.houseLocation}</span>
+                </div>
+              )}
+
+              {/* Tags */}
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                <div className="p-3 rounded-xl bg-gray-50">
+                  <div className="text-sm mb-1 text-gray-500">Où ?</div>
+                  <div className="font-bold text-gray-900">{getLocationText(selectedActivity)}</div>
+                </div>
+                <div className="p-3 rounded-xl bg-gray-50">
+                  <div className="text-sm mb-1 text-gray-500">Joueurs</div>
+                  <div className="font-bold text-gray-900">{getPlayersText(selectedActivity)}</div>
+                </div>
+                <div className="p-3 rounded-xl bg-gray-50">
+                  <div className="text-sm mb-1 text-gray-500">Énergie</div>
+                  <div className="font-bold text-gray-900">{getEnergyText(selectedActivity)}</div>
+                </div>
+                <div className="p-3 rounded-xl bg-gray-50">
+                  <div className="text-sm mb-1 text-gray-500">Durée</div>
+                  <div className="font-bold text-gray-900">{getDurationText(selectedActivity)}</div>
+                </div>
+                <div className="p-3 rounded-xl col-span-2 bg-gray-50">
+                  <div className="text-sm mb-1 text-gray-500">Saison</div>
+                  <div className="font-bold text-gray-900">{getSeasonText(selectedActivity)}</div>
+                </div>
               </div>
 
               {/* Action Buttons */}
