@@ -2,7 +2,7 @@ export type LocationTag = 'indoor' | 'outdoor';
 export type PlayerTag = 'solo' | 'duo' | 'multiple';
 export type EnergyTag = 'calm' | 'active';
 export type DurationTag = '5-10' | '10-30' | '30+';
-export type SeasonTag = 'spring' | 'summer' | 'fall' | 'winter' | 'all-year';
+export type SeasonTag = 'spring' | 'summer' | 'fall' | 'winter';
 
 export type Activity = {
   id: string;

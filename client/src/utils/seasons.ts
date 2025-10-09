@@ -24,7 +24,7 @@ export const getCurrentSeason = (): Season => {
 /**
  * Get the emoji for a given season
  */
-export const getSeasonEmoji = (season: Season | 'all-year'): string => {
+export const getSeasonEmoji = (season: Season): string => {
   switch (season) {
     case 'winter':
       return '❄️';
@@ -34,15 +34,13 @@ export const getSeasonEmoji = (season: Season | 'all-year'): string => {
       return '☀️';
     case 'fall':
       return '🍂';
-    case 'all-year':
-      return '🌍';
   }
 };
 
 /**
  * Get the French label for a given season
  */
-export const getSeasonLabel = (season: Season | 'all-year'): string => {
+export const getSeasonLabel = (season: Season): string => {
   switch (season) {
     case 'winter':
       return 'Hiver';
@@ -52,7 +50,5 @@ export const getSeasonLabel = (season: Season | 'all-year'): string => {
       return 'Été';
     case 'fall':
       return 'Automne';
-    case 'all-year':
-      return 'Toute l\'année';
   }
 };

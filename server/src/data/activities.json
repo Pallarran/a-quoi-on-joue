@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Chasse au Trésor",
-    "image": "/images/chasse-tresor.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -17,7 +17,10 @@
         "10-30"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Salon",
@@ -26,7 +29,7 @@
   {
     "id": "2",
     "name": "Statues Musicales",
-    "image": "/images/statues-musicales.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -41,7 +44,10 @@
         "5-10"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Salon",
@@ -50,7 +56,7 @@
   {
     "id": "3",
     "name": "Course de Cuillères",
-    "image": "/images/course-cuilleres.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -65,7 +71,10 @@
         "5-10"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Cuisine",
@@ -74,7 +83,7 @@
   {
     "id": "4",
     "name": "Dessin à l'Aveugle",
-    "image": "/images/dessin-aveugle.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -89,7 +98,10 @@
         "10-30"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Chambre",
@@ -98,7 +110,7 @@
   {
     "id": "5",
     "name": "Cache-Cache",
-    "image": "/images/cache-cache.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor",
@@ -124,7 +136,7 @@
   {
     "id": "6",
     "name": "Jeu de Mime",
-    "image": "/images/jeu-mime.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -140,7 +152,10 @@
         "10-30"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Salon",
@@ -149,7 +164,7 @@
   {
     "id": "7",
     "name": "Yoga Animalier",
-    "image": "/images/yoga-animalier.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -164,7 +179,10 @@
         "5-10"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Salon",
@@ -173,7 +191,7 @@
   {
     "id": "8",
     "name": "Chasse aux Couleurs",
-    "image": "/images/chasse-couleurs.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -189,7 +207,10 @@
         "10-30"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "createdAt": "2025-10-07T00:00:00.000Z"
@@ -197,7 +218,7 @@
   {
     "id": "9",
     "name": "Tente en Couverture",
-    "image": "/images/tente-couverture.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -212,7 +233,10 @@
         "30+"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Chambre",
@@ -221,7 +245,7 @@
   {
     "id": "10",
     "name": "Pique-nique Imaginaire",
-    "image": "/images/pique-nique.jpg",
+    "image": "",
     "tags": {
       "location": [
         "indoor"
@@ -236,10 +260,40 @@
         "30+"
       ],
       "season": [
-        "all-year"
+        "spring",
+        "summer",
+        "fall",
+        "winter"
       ]
     },
     "houseLocation": "Cuisine",
     "createdAt": "2025-10-07T00:00:00.000Z"
+  },
+  {
+    "id": "1759966816237",
+    "name": "Quoridor Junior",
+    "image": "/uploads/activity-1759966865890-757723781.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-08T23:40:16.237Z"
   }
 ]

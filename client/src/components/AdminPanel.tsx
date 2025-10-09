@@ -22,7 +22,7 @@ const AdminPanel = () => {
     players: [] as PlayerTag[],
     energy: [] as EnergyTag[],
     duration: [] as DurationTag[],
-    season: ['all-year'] as SeasonTag[], // Default to all-year
+    season: ['spring', 'summer', 'fall', 'winter'] as SeasonTag[], // Default to all seasons
     houseLocation: '',
   });
 
@@ -132,7 +132,7 @@ const AdminPanel = () => {
       players: [],
       energy: [],
       duration: [],
-      season: ['all-year'],
+      season: ['spring', 'summer', 'fall', 'winter'],
       houseLocation: '',
     });
     setEditingId(null);
@@ -406,15 +406,6 @@ const AdminPanel = () => {
                       className="w-4 h-4"
                     />
                     <span>{getSeasonEmoji('winter')} {getSeasonLabel('winter')}</span>
-                  </label>
-                  <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
-                    <input
-                      type="checkbox"
-                      checked={formData.season.includes('all-year')}
-                      onChange={() => toggleTag('season', 'all-year')}
-                      className="w-4 h-4"
-                    />
-                    <span>{getSeasonEmoji('all-year')} {getSeasonLabel('all-year')}</span>
                   </label>
                 </div>
               </div>
