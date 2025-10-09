@@ -84,7 +84,7 @@ const ActivityCard = ({ activity, isFavorite, onToggleFavorite, isDarkMode = fal
               <img
                 src={activity.image}
                 alt={activity.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform"
               />
             ) : (
               <span className="text-7xl group-hover:scale-110 transition-transform">{getEmoji()}</span>
