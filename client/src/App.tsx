@@ -21,6 +21,7 @@ function KidsApp() {
     energy: [],
     duration: [],
     season: [getCurrentSeason()], // Default to current season
+    category: [],
     showFavoritesOnly: false,
   });
 
@@ -56,6 +57,17 @@ function KidsApp() {
         if (!hasMatchingSeason) {
           return false;
         }
+      }
+
+      // Category filter
+      if (filters.category.length > 0 && activity.tags.category) {
+        const hasMatchingCategory = filters.category.some(c => activity.tags.category.includes(c));
+        if (!hasMatchingCategory) {
+          return false;
+        }
+      } else if (filters.category.length > 0 && !activity.tags.category) {
+        // If category filter is active but activity has no categories, exclude it
+        return false;
       }
 
       return true;

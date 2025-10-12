@@ -1,17 +1,47 @@
 [
   {
-    "id": "1",
-    "name": "Chasse au Trésor",
-    "image": "",
+    "id": "1759966560196",
+    "name": "Quoridor Junior",
+    "image": "/uploads/activity-1759966567833-741770183.jpg",
     "tags": {
       "location": [
         "indoor"
       ],
       "players": [
-        "multiple"
+        "duo"
       ],
       "energy": [
-        "active"
+        "calm"
+      ],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-08T23:36:00.196Z"
+  },
+  {
+    "id": "1759970299758",
+    "name": "Abalone",
+    "image": "/uploads/activity-1759970287751-356828045.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "calm"
       ],
       "duration": [
         "10-30"
@@ -21,15 +51,142 @@
         "summer",
         "fall",
         "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
       ]
     },
-    "houseLocation": "Salon",
-    "createdAt": "2025-10-07T00:00:00.000Z"
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:38:19.759Z"
   },
   {
-    "id": "2",
-    "name": "Statues Musicales",
-    "image": "",
+    "id": "1759970329380",
+    "name": "Gagne ta maman !",
+    "image": "/uploads/activity-1759970334928-93838427.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "solo",
+        "duo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "casse-tete"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:38:49.380Z"
+  },
+  {
+    "id": "1759970380313",
+    "name": "Trouble",
+    "image": "/uploads/activity-1759970372092-877933936.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "summer",
+        "spring",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:39:40.313Z"
+  },
+  {
+    "id": "1759970401969",
+    "name": "Dixit",
+    "image": "/uploads/activity-1759970392125-912953385.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:40:01.969Z"
+  },
+  {
+    "id": "1759970423195",
+    "name": "Monopoly Junior",
+    "image": "/uploads/activity-1759970416788-5879883.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:40:23.195Z"
+  },
+  {
+    "id": "1759970439803",
+    "name": "Échec",
+    "image": "/uploads/activity-1759970435398-829776196.jpg",
     "tags": {
       "location": [
         "indoor"
@@ -38,34 +195,193 @@
         "duo"
       ],
       "energy": [
-        "active"
+        "calm"
       ],
       "duration": [
-        "5-10"
+        "30+"
       ],
       "season": [
         "spring",
         "summer",
         "fall",
         "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
       ]
     },
-    "houseLocation": "Salon",
-    "createdAt": "2025-10-07T00:00:00.000Z"
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:40:39.803Z"
   },
   {
-    "id": "3",
-    "name": "Course de Cuillères",
-    "image": "",
+    "id": "1759970467393",
+    "name": "Les aventuriers du rail",
+    "image": "/uploads/activity-1759970462059-428564634.jpg",
     "tags": {
       "location": [
         "indoor"
       ],
       "players": [
+        "duo",
         "multiple"
       ],
       "energy": [
-        "active"
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:41:07.393Z"
+  },
+  {
+    "id": "1759970505935",
+    "name": "L'éveil des Sang Dragons",
+    "image": "/uploads/activity-1759970500357-849263594.webp",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:41:45.935Z"
+  },
+  {
+    "id": "1759970535324",
+    "name": "Rush Hour",
+    "image": "/uploads/activity-1759970519664-349377504.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "solo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "5-10",
+        "10-30"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "casse-tete"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:42:15.324Z"
+  },
+  {
+    "id": "1759970561461",
+    "name": "Labyrinthe Pokémon",
+    "image": "/uploads/activity-1759970554708-292339300.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:42:41.461Z"
+  },
+  {
+    "id": "1759970590631",
+    "name": "Course contre le crime",
+    "image": "/uploads/activity-1759970574292-591274443.webp",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:43:10.631Z"
+  },
+  {
+    "id": "1759970618905",
+    "name": "OKO",
+    "image": "/uploads/activity-1759970605532-359945834.webp",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
       ],
       "duration": [
         "5-10"
@@ -75,15 +391,198 @@
         "summer",
         "fall",
         "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
       ]
     },
-    "houseLocation": "Cuisine",
-    "createdAt": "2025-10-07T00:00:00.000Z"
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:43:38.905Z"
   },
   {
-    "id": "4",
-    "name": "Dessin à l'Aveugle",
-    "image": "",
+    "id": "1759970635004",
+    "name": "Battleship",
+    "image": "/uploads/activity-1759970629910-312084737.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:43:55.004Z"
+  },
+  {
+    "id": "1759970666334",
+    "name": "Sushi dice",
+    "image": "/uploads/activity-1759970656359-738696299.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:44:26.334Z"
+  },
+  {
+    "id": "1759970690494",
+    "name": "La chasse aux bestioles",
+    "image": "/uploads/activity-1759970681469-759517215.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:44:50.494Z"
+  },
+  {
+    "id": "1759970714168",
+    "name": "Bora Fruta",
+    "image": "/uploads/activity-1759970707277-532120701.jpg",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo",
+        "multiple"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:45:14.168Z"
+  },
+  {
+    "id": "1759970740848",
+    "name": "Guess who?",
+    "image": "/uploads/activity-1759970735226-213681398.webp",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "5-10"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:45:40.848Z"
+  },
+  {
+    "id": "1759970756206",
+    "name": "Dames",
+    "image": "/uploads/activity-1759970752400-854264544.webp",
+    "tags": {
+      "location": [
+        "indoor"
+      ],
+      "players": [
+        "duo"
+      ],
+      "energy": [
+        "calm"
+      ],
+      "duration": [
+        "30+"
+      ],
+      "season": [
+        "spring",
+        "summer",
+        "fall",
+        "winter"
+      ],
+      "category": [
+        "jeu-de-societe"
+      ]
+    },
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T00:45:56.206Z"
+  },
+  {
+    "id": "1759977058670",
+    "name": "Coloriage",
+    "image": "/uploads/activity-1759977178185-106894673.jpg",
     "tags": {
       "location": [
         "indoor"
@@ -102,25 +601,54 @@
         "summer",
         "fall",
         "winter"
+      ],
+      "category": [
+        "arts-et-bricolage"
       ]
     },
-    "houseLocation": "Chambre",
-    "createdAt": "2025-10-07T00:00:00.000Z"
+    "houseLocation": "Salon - Bibliothèque",
+    "createdAt": "2025-10-09T02:30:58.670Z"
   },
   {
-    "id": "5",
-    "name": "Cache-Cache",
-    "image": "",
+    "id": "1759977274478",
+    "name": "Construire un bonhomme de neige",
+    "image": "/uploads/activity-1759977261523-294600766.webp",
     "tags": {
       "location": [
-        "indoor",
         "outdoor"
       ],
       "players": [
+        "solo",
+        "duo",
         "multiple"
       ],
       "energy": [
         "active"
+      ],
+      "duration": [
+        "10-30"
+      ],
+      "season": [
+        "winter"
+      ],
+      "category": []
+    },
+    "createdAt": "2025-10-09T02:34:34.478Z"
+  },
+  {
+    "id": "1759977605245",
+    "name": "Aller se balancer",
+    "image": "/uploads/activity-1759977586771-495610497.jpg",
+    "tags": {
+      "location": [
+        "outdoor"
+      ],
+      "players": [
+        "solo",
+        "duo"
+      ],
+      "energy": [
+        "calm"
       ],
       "duration": [
         "10-30"
@@ -129,171 +657,9 @@
         "spring",
         "summer",
         "fall"
-      ]
+      ],
+      "category": []
     },
-    "createdAt": "2025-10-07T00:00:00.000Z"
-  },
-  {
-    "id": "6",
-    "name": "Jeu de Mime",
-    "image": "",
-    "tags": {
-      "location": [
-        "indoor"
-      ],
-      "players": [
-        "multiple"
-      ],
-      "energy": [
-        "calm",
-        "active"
-      ],
-      "duration": [
-        "10-30"
-      ],
-      "season": [
-        "spring",
-        "summer",
-        "fall",
-        "winter"
-      ]
-    },
-    "houseLocation": "Salon",
-    "createdAt": "2025-10-07T00:00:00.000Z"
-  },
-  {
-    "id": "7",
-    "name": "Yoga Animalier",
-    "image": "",
-    "tags": {
-      "location": [
-        "indoor"
-      ],
-      "players": [
-        "solo"
-      ],
-      "energy": [
-        "calm"
-      ],
-      "duration": [
-        "5-10"
-      ],
-      "season": [
-        "spring",
-        "summer",
-        "fall",
-        "winter"
-      ]
-    },
-    "houseLocation": "Salon",
-    "createdAt": "2025-10-07T00:00:00.000Z"
-  },
-  {
-    "id": "8",
-    "name": "Chasse aux Couleurs",
-    "image": "",
-    "tags": {
-      "location": [
-        "indoor"
-      ],
-      "players": [
-        "solo"
-      ],
-      "energy": [
-        "calm",
-        "active"
-      ],
-      "duration": [
-        "10-30"
-      ],
-      "season": [
-        "spring",
-        "summer",
-        "fall",
-        "winter"
-      ]
-    },
-    "createdAt": "2025-10-07T00:00:00.000Z"
-  },
-  {
-    "id": "9",
-    "name": "Tente en Couverture",
-    "image": "",
-    "tags": {
-      "location": [
-        "indoor"
-      ],
-      "players": [
-        "duo"
-      ],
-      "energy": [
-        "calm"
-      ],
-      "duration": [
-        "30+"
-      ],
-      "season": [
-        "spring",
-        "summer",
-        "fall",
-        "winter"
-      ]
-    },
-    "houseLocation": "Chambre",
-    "createdAt": "2025-10-07T00:00:00.000Z"
-  },
-  {
-    "id": "10",
-    "name": "Pique-nique Imaginaire",
-    "image": "",
-    "tags": {
-      "location": [
-        "indoor"
-      ],
-      "players": [
-        "duo"
-      ],
-      "energy": [
-        "calm"
-      ],
-      "duration": [
-        "30+"
-      ],
-      "season": [
-        "spring",
-        "summer",
-        "fall",
-        "winter"
-      ]
-    },
-    "houseLocation": "Cuisine",
-    "createdAt": "2025-10-07T00:00:00.000Z"
-  },
-  {
-    "id": "1759966816237",
-    "name": "Quoridor Junior",
-    "image": "/uploads/activity-1759966865890-757723781.jpg",
-    "tags": {
-      "location": [
-        "indoor"
-      ],
-      "players": [
-        "duo"
-      ],
-      "energy": [
-        "calm"
-      ],
-      "duration": [
-        "5-10"
-      ],
-      "season": [
-        "spring",
-        "summer",
-        "fall",
-        "winter"
-      ]
-    },
-    "houseLocation": "Salon - Bibliothèque",
-    "createdAt": "2025-10-08T23:40:16.237Z"
+    "createdAt": "2025-10-09T02:40:05.245Z"
   }
 ]

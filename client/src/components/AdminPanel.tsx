@@ -1,8 +1,9 @@
 import { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, LocationTag, PlayerTag, EnergyTag, DurationTag, SeasonTag } from '../types/Activity';
+import { Activity, LocationTag, PlayerTag, EnergyTag, DurationTag, SeasonTag, CategoryTag } from '../types/Activity';
 import { useActivities } from '../hooks/useActivities';
 import { getSeasonEmoji, getSeasonLabel } from '../utils/seasons';
+import { getCategoryLabel, getCategoryEmoji, getAllCategories } from '../utils/categories';
 
 const AdminPanel = () => {
   const { activities, addActivity, updateActivity, deleteActivity, uploadImage } = useActivities();
@@ -23,6 +24,7 @@ const AdminPanel = () => {
     energy: [] as EnergyTag[],
     duration: [] as DurationTag[],
     season: ['spring', 'summer', 'fall', 'winter'] as SeasonTag[], // Default to all seasons
+    category: [] as CategoryTag[],
     houseLocation: '',
   });
 
@@ -82,6 +84,7 @@ const AdminPanel = () => {
         energy: formData.energy,
         duration: formData.duration,
         season: formData.season,
+        category: formData.category,
       },
       houseLocation: formData.houseLocation || undefined,
     };
@@ -110,6 +113,7 @@ const AdminPanel = () => {
       energy: activity.tags.energy,
       duration: activity.tags.duration,
       season: activity.tags.season,
+      category: activity.tags.category || [],
       houseLocation: activity.houseLocation || '',
     });
     setShowForm(true);
@@ -133,13 +137,14 @@ const AdminPanel = () => {
       energy: [],
       duration: [],
       season: ['spring', 'summer', 'fall', 'winter'],
+      category: [],
       houseLocation: '',
     });
     setEditingId(null);
     setShowForm(false);
   };
 
-  const toggleTag = <T,>(category: 'location' | 'players' | 'energy' | 'duration' | 'season', value: T) => {
+  const toggleTag = <T,>(category: 'location' | 'players' | 'energy' | 'duration' | 'season' | 'category', value: T) => {
     const currentValues = formData[category] as T[];
     const newValues = currentValues.includes(value)
       ? currentValues.filter(v => v !== value)
@@ -427,6 +432,23 @@ const AdminPanel = () => {
               </div>
 
               <div className="mb-3">
+                <label className="block text-gray-700 font-medium mb-1">🎲 Catégorie (sélection multiple)</label>
+                <div className="flex flex-wrap gap-2">
+                  {getAllCategories().map(cat => (
+                    <label key={cat} className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                      <input
+                        type="checkbox"
+                        checked={formData.category.includes(cat)}
+                        onChange={() => toggleTag('category', cat)}
+                        className="w-4 h-4"
+                      />
+                      <span>{getCategoryEmoji(cat)} {getCategoryLabel(cat)}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-3">
                 <label className="block text-gray-700 font-medium mb-1">📍 Emplacement dans la maison (optionnel)</label>
                 <input
                   type="text"
@@ -519,6 +541,11 @@ const AdminPanel = () => {
                     {activity.tags.season.map(s => (
                       <span key={s} className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded">
                         {getSeasonEmoji(s)} {getSeasonLabel(s)}
+                      </span>
+                    ))}
+                    {activity.tags.category && activity.tags.category.map(c => (
+                      <span key={c} className="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded">
+                        {getCategoryEmoji(c)} {getCategoryLabel(c)}
                       </span>
                     ))}
                     {activity.houseLocation && (

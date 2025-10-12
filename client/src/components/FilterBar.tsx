@@ -1,5 +1,6 @@
-import { ActivityFilters, LocationTag, PlayerTag, EnergyTag, DurationTag, SeasonTag } from '../types/Activity';
+import { ActivityFilters, LocationTag, PlayerTag, EnergyTag, DurationTag, SeasonTag, CategoryTag } from '../types/Activity';
 import { getSeasonEmoji, getSeasonLabel, getCurrentSeason } from '../utils/seasons';
+import { getCategoryEmoji, getCategoryLabel, getAllCategories } from '../utils/categories';
 import { RotateCcw } from 'lucide-react';
 
 interface FilterBarProps {
@@ -45,6 +46,13 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
     onFiltersChange({ ...filters, season: newSeason });
   };
 
+  const toggleCategory = (category: CategoryTag) => {
+    const newCategory = filters.category.includes(category)
+      ? filters.category.filter(c => c !== category)
+      : [...filters.category, category];
+    onFiltersChange({ ...filters, category: newCategory });
+  };
+
   const toggleFavoritesOnly = () => {
     onFiltersChange({ ...filters, showFavoritesOnly: !filters.showFavoritesOnly });
   };
@@ -56,6 +64,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
       energy: [],
       duration: [],
       season: [getCurrentSeason()], // Reset to current season
+      category: [],
       showFavoritesOnly: false,
     });
   };
@@ -66,6 +75,7 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
     filters.energy.length > 0 ||
     filters.duration.length > 0 ||
     (filters.season.length !== 1 || filters.season[0] !== getCurrentSeason()) ||
+    filters.category.length > 0 ||
     filters.showFavoritesOnly;
 
   const inactiveButtonClass = isDarkMode
@@ -204,6 +214,31 @@ const FilterBar = ({ filters, onFiltersChange, activityCount, isDarkMode = false
             <div className="flex gap-2">
               <button onClick={toggleFavoritesOnly} className={`px-4 py-2 h-[44px] flex items-center justify-center rounded-lg text-sm font-medium transition-all whitespace-nowrap ${filters.showFavoritesOnly ? 'bg-yellow-200 text-yellow-900 shadow-sm' : inactiveButtonClass}`}>Favoris</button>
             </div>
+          </div>
+        </div>
+
+        {/* Category Filters - Second Row */}
+        <div className={`mt-4 pt-4 border-t ${isDarkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+          <div className="flex items-center gap-1.5 mb-3">
+            <span className="text-lg">🎲</span>
+            <h3 className={`text-xs font-semibold uppercase tracking-wide ${headingClass}`}>Catégorie</h3>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {getAllCategories().map(category => (
+              <button
+                key={category}
+                onClick={() => toggleCategory(category)}
+                title={getCategoryLabel(category)}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5 ${
+                  filters.category.includes(category)
+                    ? 'bg-amber-200 text-amber-900 shadow-sm'
+                    : inactiveButtonClass
+                }`}
+              >
+                <span className="text-base">{getCategoryEmoji(category)}</span>
+                <span>{getCategoryLabel(category)}</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
