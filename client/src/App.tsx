@@ -26,52 +26,54 @@ function KidsApp() {
   });
 
   const filteredActivities = useMemo(() => {
-    return activities.filter(activity => {
-      if (filters.showFavoritesOnly && !favorites.includes(activity.id)) {
-        return false;
-      }
-
-      // If filter is empty (no selections), show all
-      // If filter has selections, activity must match at least one selected value
-      if (filters.location.length > 0 && !filters.location.some(loc => activity.tags.location.includes(loc))) {
-        return false;
-      }
-
-      if (filters.players.length > 0 && !filters.players.some(p => activity.tags.players.includes(p))) {
-        return false;
-      }
-
-      if (filters.energy.length > 0 && !filters.energy.some(e => activity.tags.energy.includes(e))) {
-        return false;
-      }
-
-      if (filters.duration.length > 0 && !filters.duration.some(d => activity.tags.duration.includes(d))) {
-        return false;
-      }
-
-      // Season filter: only applies to outdoor activities
-      // Indoor activities bypass season filter
-      if (activity.tags.location.includes('outdoor') && filters.season.length > 0) {
-        // Activity must match at least one of the selected season(s)
-        const hasMatchingSeason = filters.season.some(s => activity.tags.season.includes(s));
-        if (!hasMatchingSeason) {
+    return activities
+      .filter(activity => {
+        if (filters.showFavoritesOnly && !favorites.includes(activity.id)) {
           return false;
         }
-      }
 
-      // Category filter
-      if (filters.category.length > 0 && activity.tags.category) {
-        const hasMatchingCategory = filters.category.some(c => activity.tags.category.includes(c));
-        if (!hasMatchingCategory) {
+        // If filter is empty (no selections), show all
+        // If filter has selections, activity must match at least one selected value
+        if (filters.location.length > 0 && !filters.location.some(loc => activity.tags.location.includes(loc))) {
           return false;
         }
-      } else if (filters.category.length > 0 && !activity.tags.category) {
-        // If category filter is active but activity has no categories, exclude it
-        return false;
-      }
 
-      return true;
-    });
+        if (filters.players.length > 0 && !filters.players.some(p => activity.tags.players.includes(p))) {
+          return false;
+        }
+
+        if (filters.energy.length > 0 && !filters.energy.some(e => activity.tags.energy.includes(e))) {
+          return false;
+        }
+
+        if (filters.duration.length > 0 && !filters.duration.some(d => activity.tags.duration.includes(d))) {
+          return false;
+        }
+
+        // Season filter: only applies to outdoor activities
+        // Indoor activities bypass season filter
+        if (activity.tags.location.includes('outdoor') && filters.season.length > 0) {
+          // Activity must match at least one of the selected season(s)
+          const hasMatchingSeason = filters.season.some(s => activity.tags.season.includes(s));
+          if (!hasMatchingSeason) {
+            return false;
+          }
+        }
+
+        // Category filter
+        if (filters.category.length > 0 && activity.tags.category) {
+          const hasMatchingCategory = filters.category.some(c => activity.tags.category.includes(c));
+          if (!hasMatchingCategory) {
+            return false;
+          }
+        } else if (filters.category.length > 0 && !activity.tags.category) {
+          // If category filter is active but activity has no categories, exclude it
+          return false;
+        }
+
+        return true;
+      })
+      .sort((a, b) => a.name.localeCompare(b.name, 'fr'));
   }, [activities, filters, favorites]);
 
   if (loading) {
