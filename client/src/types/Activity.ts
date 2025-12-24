@@ -6,7 +6,12 @@ export type SeasonTag = 'spring' | 'summer' | 'fall' | 'winter';
 export type CategoryTag =
   | 'jeu-de-societe'
   | 'casse-tete'
-  | 'arts-et-bricolage';
+  | 'arts-et-bricolage'
+  | 'instrument'
+  | 'jeu-educatif'
+  | 'jeu-video'
+  | 'lego'
+  | 'autre';
 
 export type Activity = {
   id: string;
